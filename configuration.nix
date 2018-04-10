@@ -93,7 +93,8 @@
     # Enable the KDE Desktop Environment.
     displayManager.sddm.enable = true;
     desktopManager.plasma5.enable = true;
-   # displayManager.sessionCommands = ''
+
+    # displayManager.sessionCommands = ''
    #     gpg-connect-agent killagent /bye
    #     GPG_TTY=$(tty)
    #     export GPG_TTY
@@ -158,84 +159,32 @@
 
 
   environment.systemPackages = with pkgs; [
-    coreutils
-    utillinux
-    linuxPackages.bbswitch
-    which
-    file
-    tree
-    lsof
-    zip unzip
-    htop
-    psmisc # pstree, killall et al
-    powertop
-    hdparm
 
-    zsh oh-my-zsh
+     gitAndTools.gitFull
 
-    networkmanagerapplet networkmanager_openvpn
-    curl wget
-#    kdeconnect
+     google-chrome
+
+     atom
+
+     latte-dock
+
+     zsh
+
+     networkmanagerapplet networkmanager_openvpn
 
 
-    gitAndTools.gitFull
-    quilt
 
 
-    gnupg
-    kdeApplications.kleopatra
-#    kdeApplications.kgpg
-    pass
-    pwgen
-    pinentry
-    pinentry_qt5
-    kwalletcli
+     coreutils
+     utillinux
 
-    # tmux
-    xdg_utils
-    xfontsel
-#    kdeApplications.l10n.de.qt4
+     xdg_utils
+     shared_mime_info
 
-    # vim
-    nano
-    # atom-beta
-    unstable.atom
-#    libreoffice-fresh
+     gnome3.gtk
+     gnome2.gtk
 
-    /* chromium */
-    unstable.firefox-bin
-    unstable.google-chrome
-    # gimp
-    # inkscape
 
-    # gtk icons & themes
-    gnome3.gtk
-    gnome2.gtk
-    hicolor_icon_theme
-    shared_mime_info
-
-    dunst libnotify
-    xautolock
-    xss-lock
-
-    nox
-
-  #  plasma-pa
-
-    vlc
-    phonon
-
-    kdeApplications.ark
-    kdeApplications.spectacle
-
-    # system-config-printer
-    xfce.exo
-    xfce.gtk_xfce_engine
-    xfce.gvfs
-    xfce.terminal
-    xfce.xfce4icontheme
-    xfce.xfce4settings
-    xfce.xfconf
   ];
 
   environment.shellInit = ''
@@ -250,7 +199,7 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 
 
@@ -258,6 +207,5 @@
   nix.gc.automatic = true;
   nix.gc.dates = "weekly";
   nix.gc.options = "--delete-older-than 30d";
-
 
 }
