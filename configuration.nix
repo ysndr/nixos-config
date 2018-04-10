@@ -214,7 +214,7 @@
   #  plasma-pa
 
     vlc
-    phonon
+    
 
     kdeApplications.ark
     kdeApplications.spectacle
