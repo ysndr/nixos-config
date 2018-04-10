@@ -214,19 +214,13 @@
   #  plasma-pa
 
     vlc
-    
+
 
     kdeApplications.ark
     kdeApplications.spectacle
 
     # system-config-printer
-    xfce.exo
-    xfce.gtk_xfce_engine
-    xfce.gvfs
-    xfce.terminal
-    xfce.xfce4icontheme
-    xfce.xfce4settings
-    xfce.xfconf
+    
   ];
 
   environment.shellInit = ''
