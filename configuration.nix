@@ -129,13 +129,8 @@
 
 
   services.udev.extraRules = ''
-
-
   ''
   + builtins.readFile  (./udev/42-logitech-unify-permissions.rules);
-
-
-
 
 
 
@@ -179,7 +174,7 @@
 
 
     gitAndTools.gitFull
-    quilt
+    
 
 
     gnupg
