@@ -207,7 +207,7 @@
     hicolor_icon_theme
     shared_mime_info
 
-    dunst libnotify
+    libnotify
 
     nox
 
