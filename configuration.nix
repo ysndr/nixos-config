@@ -174,8 +174,6 @@
 
 
     gitAndTools.gitFull
-    
-
 
     gnupg
     kdeApplications.kleopatra
@@ -210,8 +208,6 @@
     shared_mime_info
 
     dunst libnotify
-    xautolock
-    xss-lock
 
     nox
 
