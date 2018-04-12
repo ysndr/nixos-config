@@ -187,8 +187,8 @@
 #    kdeApplications.kgpg
     pass
     pwgen
-    pinentry
-    pinentry_qt5
+    /* pinentry */
+    /* pinentry_qt5 */
     kwalletcli
 
     # tmux
@@ -226,6 +226,7 @@
   #  plasma-pa
 
     vlc
+
     kdeApplications.ark
     kdeApplications.spectacle
 
