@@ -209,10 +209,13 @@
     # inkscape
 
     # gtk icons & themes
+    arc-theme
     gnome3.gtk
     gnome2.gtk
     hicolor_icon_theme
     shared_mime_info
+
+    latte-dock
 
     dunst libnotify
     xautolock
@@ -223,14 +226,12 @@
   #  plasma-pa
 
     vlc
-    phonon
-
     kdeApplications.ark
     kdeApplications.spectacle
 
     # system-config-printer
     xfce.exo
-    xfce.gtk_xfce_engine
+    xfce.gtk-xfce-engine
     xfce.gvfs
     xfce.terminal
     xfce.xfce4icontheme
@@ -250,7 +251,7 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "17.09"; # Did you read the comment?
+  system.stateVersion = "18.03"; # Did you read the comment?
 
 
 
