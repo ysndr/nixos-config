@@ -213,6 +213,7 @@
     gnome3.gtk
     gnome2.gtk
     hicolor_icon_theme
+    dbus-glib
     shared_mime_info
 
     latte-dock
