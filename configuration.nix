@@ -227,6 +227,7 @@
 
     vlc
 
+    plasma5.sddm-kcm
     kdeApplications.ark
     kdeApplications.spectacle
 
