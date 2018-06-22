@@ -28,10 +28,10 @@
   # started in user sessions.
   programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
+  /* programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
+  }; */
 
   #programs.browserpass.enable=true;
 
@@ -60,7 +60,7 @@
     enable = true;
     enableOnBoot = false;
   };
-
+  system.fsPackages = [ pkgs.exfat ];
 
   # Enable CUPS to print documents.
   services = {
@@ -101,7 +101,7 @@
    #   '';
   };
 
-  # include dconf service for gtk applications
+  # include dconf se    rvice for gtk applications
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   hardware.pulseaudio = {
@@ -159,37 +159,75 @@
 
 
   environment.systemPackages = with pkgs; [
+    coreutils
+    utillinux
+    linuxPackages.bbswitch
+    which
+    file
+    tree
+    lsof
+    zip unzip
+    htop
+    psmisc # pstree, killall et al
+    powertop
+    hdparm
 
-     gitAndTools.gitFull
+    zsh oh-my-zsh
 
-     google-chrome
-
-     atom
-
-     latte-dock
-
-     zsh
-
-     networkmanagerapplet networkmanager_openvpn
-
-
-
-
-     coreutils
-     utillinux
-
-     xdg_utils
-     shared_mime_info
-
-     gnome3.gtk
-     gnome2.gtk
+    networkmanagerapplet networkmanager_openvpn
+    curl wget
+#    kdeconnect
 
 
+    gitAndTools.gitFull
+    quilt
+
+    xdg_utils
+    xfontsel
+
+    nano
+
+    unstable.firefox-bin
+    unstable.google-chrome
+
+
+    # gtk icons & themes
+    arc-theme
+    gnome3.gtk
+    gnome2.gtk
+    hicolor_icon_theme
+    shared_mime_info
+
+
+
+    dunst libnotify
+    xautolock
+    xss-lock
+
+    nox
+
+  #  plasma-pa
+
+    vlc
+
+    plasma5.sddm-kcm
+
+
+    # system-config-printer
+    xfce.exo
+    xfce.gtk-xfce-engine
+    xfce.gvfs
+    xfce.terminal
+    xfce.xfce4icontheme
+    xfce.xfce4settings
+    xfce.xfconf
   ];
 
-  environment.shellInit = ''
-
-  '';
+  /* environment.shellInit = ''
+    GPG_TTY="$(tty)"
+    export GPG_TTY
+    ${pkgs.gnupg}/bin/gpg-connect-agent updatestartuptty /bye > /dev/null
+  ''; */
 
   #export GTK_PATH=$GTK_PATH:${pkgs.oxygen_gtk}/lib/gtk-2.0
   #export GTK2_RC_FILES=$GTK2_RC_FILES:${pkgs.oxygen_gtk}/share/themes/oxygen-gtk/gtk-2.0/gtkrc
