@@ -28,10 +28,10 @@
   # started in user sessions.
   programs.bash.enableCompletion = true;
   # programs.mtr.enable = true;
-  programs.gnupg.agent = {
+  /* programs.gnupg.agent = {
     enable = true;
     enableSSHSupport = true;
-  };
+  }; */
 
   #programs.browserpass.enable=true;
 
@@ -60,7 +60,7 @@
     enable = true;
     enableOnBoot = false;
   };
-
+  system.fsPackages = [ pkgs.exfat ];
 
   # Enable CUPS to print documents.
   services = {
@@ -100,7 +100,7 @@
    #   '';
   };
 
-  # include dconf service for gtk applications
+  # include dconf se    rvice for gtk applications
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   hardware.pulseaudio = {
@@ -181,42 +181,23 @@
     gitAndTools.gitFull
     quilt
 
-
-    gnupg
-    kdeApplications.kleopatra
-#    kdeApplications.kgpg
-    pass
-    pwgen
-    /* pinentry */
-    /* pinentry_qt5 */
-    kwalletcli
-
-    # tmux
     xdg_utils
     xfontsel
-#    kdeApplications.l10n.de.qt4
 
-    # vim
     nano
-    # atom-beta
-    unstable.atom
-#    libreoffice-fresh
 
-    /* chromium */
     unstable.firefox-bin
     unstable.google-chrome
-    # gimp
-    # inkscape
+
 
     # gtk icons & themes
     arc-theme
     gnome3.gtk
     gnome2.gtk
     hicolor_icon_theme
-    dbus-glib
     shared_mime_info
 
-    latte-dock
+
 
     dunst libnotify
     xautolock
@@ -229,8 +210,7 @@
     vlc
 
     plasma5.sddm-kcm
-    kdeApplications.ark
-    kdeApplications.spectacle
+
 
     # system-config-printer
     xfce.exo
@@ -242,9 +222,11 @@
     xfce.xfconf
   ];
 
-  environment.shellInit = ''
-
-  '';
+  /* environment.shellInit = ''
+    GPG_TTY="$(tty)"
+    export GPG_TTY
+    ${pkgs.gnupg}/bin/gpg-connect-agent updatestartuptty /bye > /dev/null
+  ''; */
 
   #export GTK_PATH=$GTK_PATH:${pkgs.oxygen_gtk}/lib/gtk-2.0
   #export GTK2_RC_FILES=$GTK2_RC_FILES:${pkgs.oxygen_gtk}/share/themes/oxygen-gtk/gtk-2.0/gtkrc
