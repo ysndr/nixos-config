@@ -26,7 +26,7 @@
   hardware.nvidiaOptimus.disable = true;
 
   # activate bluetooth
-  hardware.bluetooth.enable = true; 
+  hardware.bluetooth.enable = true;
 
   # File system mounts
   fileSystems."/" =
@@ -48,7 +48,7 @@
   swapDevices = [ ];
 
   nix.maxJobs = lib.mkDefault 4;
- 
+
  services.tlp.enable = true;
  powerManagement = {
     enable = true;
