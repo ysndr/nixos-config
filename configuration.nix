@@ -84,7 +84,11 @@
     xkbOptions = "eurosign:e";
 
     # Enable touchpad support.
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+      clickMethod = "clickfinger";
+    };
+
     multitouch = {
       enable=true;
       ignorePalm=true;
