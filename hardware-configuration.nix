@@ -23,7 +23,12 @@
   services.xserver.libinput.enable = true;
 
   # To just use intel integrated graphics with Intel's open source driver
-  hardware.nvidiaOptimus.disable = true;
+# hardware.nvidiaOptimus.disable = true;
+  hardware.bumblebee.enable = true;
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+
+
 
   # activate bluetooth
   hardware.bluetooth.enable = true;
