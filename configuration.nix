@@ -213,7 +213,7 @@
 
     vlc
 
-    plasma5.sddm-kcm
+    #plasma5.sddm-kcm
 
 
     # system-config-printer
