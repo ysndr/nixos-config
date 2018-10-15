@@ -225,6 +225,7 @@
     xfce.xfce4settings
     xfce.xfconf
   ];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   /* environment.shellInit = ''
     GPG_TTY="$(tty)"
