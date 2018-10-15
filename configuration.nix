@@ -190,16 +190,16 @@
 
     nano
 
-    unstable.firefox-bin
+    unstable.firefox
     unstable.google-chrome
 
 
     # gtk icons & themes
-    arc-theme
     gnome3.gtk
     gnome2.gtk
     hicolor_icon_theme
     shared_mime_info
+    arc-theme
 
 
 
