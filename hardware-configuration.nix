@@ -23,6 +23,24 @@
   services.xserver.libinput.enable = true;
 
   # To just use intel integrated graphics with Intel's open source driver
+  hardware.opengl.enable = true;
+  hardware.opengl.driSupport = true;
+  hardware.opengl.driSupport32Bit = true;
+
+
+  hardware.nvidia = {
+    modesetting.enable = true;
+
+          optimus_prime = {
+            enable = true;
+            # values are from lspci
+            # try lspci | grep -P 'VGA|3D'
+            intelBusId = "PCI:00:02:0";
+            nvidiaBusId = "PCI:01:00:0";
+          };
+  };
+
+  services.xserver.videoDrivers = [ "nvidiaBeta" ];
 # hardware.nvidiaOptimus.disable = true;
   hardware.bumblebee.enable = true;
   hardware.opengl.enable = true;
