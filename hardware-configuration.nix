@@ -20,6 +20,9 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  # /tmp on tmpfs
+  boot.tmpOnTmpfs = true;
+
   # touchpad
   services.xserver.libinput.enable = true;
 
