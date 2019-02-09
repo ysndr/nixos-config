@@ -23,6 +23,7 @@
     gssSupport = true;
     /* jre = true; */
     /* enableMPlayer = true; */
+    enableGnomeExtensions = true;
     enableDjvu = true;
     enablePlasmaBrowserIntegration = true;
     enableBrowserpass = true;
