@@ -242,10 +242,20 @@
   system.stateVersion = "18.03"; # Did you read the comment?
 
 
+  nix = {
 
   ## Garbage Collection
-  nix.gc.automatic = true;
-  nix.gc.dates = "weekly";
-  nix.gc.options = "--delete-older-than 30d";
+  gc.automatic = true;
+  gc.dates = "weekly";
+  gc.options = "--delete-older-than 30d";
 
+  binaryCaches = [
+    "https://cache.nixos.org/"
+    "https://hie-nix.cachix.org"
+  ];
+  binaryCachePublicKeys = [
+    "hie-nix.cachix.org-1:EjBSHzF6VmDnzqlldGXbi0RM3HdjfTU3yDRi9Pd0jTY="
+  ];
+  trustedUsers = [ "root" "ysander" ];
+};
 }
