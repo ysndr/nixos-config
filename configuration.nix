@@ -102,11 +102,6 @@
     desktopManager.plasma5.enable = true;
     desktopManager.gnome3.enable = true;
 
-    # displayManager.sessionCommands = ''
-   #     gpg-connect-agent killagent /bye
-   #     GPG_TTY=$(tty)
-   #     export GPG_TTY
-   #   '';
   };
 
   # include dconf se    rvice for gtk applications
