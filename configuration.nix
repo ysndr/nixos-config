@@ -131,7 +131,7 @@
     isNormalUser = true;
     home = "/home/ysander";
     description = "Yannik Sander";
-    extraGroups = [ "wheel" "networkmanager" "audio" "docker" "input" "plugdev" ];
+    extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" "input" "plugdev" "ysander"];
     shell = "/run/current-system/sw/bin/zsh";
   };
 
