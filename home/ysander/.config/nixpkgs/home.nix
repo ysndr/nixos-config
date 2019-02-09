@@ -17,6 +17,8 @@ let
       atom
       vscode
       kmail
+      spotify
+      tdesktop     
 
       docker_compose
 
@@ -38,6 +40,7 @@ let
       gnupg
 
       evince
+      gnome3.eog
 
       hunspellDicts.de-de
       hunspellDicts.en-us
@@ -118,7 +121,7 @@ in {
       extended = true;
     };
     plugins = [
-      {
+      /* {
           name = "enhancd";
           file = "init.sh";
           src = pkgs.fetchFromGitHub {
@@ -127,7 +130,8 @@ in {
             rev = "v2.2.1";
             sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
           };
-        }
+        } */
+
     ];
     oh-my-zsh = {
       custom = "$HOME/.config/zsh/oh-my-zsh";
