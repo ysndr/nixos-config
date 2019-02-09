@@ -61,6 +61,9 @@ in {
  
   # microcode
   hardware.cpu.intel.updateMicrocode = true;
+  # fwupd
+  services.fwupd.enable = true;
+
 
   # activate bluetooth
   hardware.bluetooth.enable = true;
