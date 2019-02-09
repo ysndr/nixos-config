@@ -12,6 +12,10 @@
         bumblebee      # for optirun
       ];
     };
+    
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      pkgs=super;
+    };
   };
   firefox = {
     enableAdobeFlash = true;
