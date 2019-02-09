@@ -87,12 +87,13 @@
   nix.maxJobs = lib.mkDefault 4;
 
  services.tlp.enable = true;
- powerManagement = {
+ powerManagement = rec {
     enable = true;
 #    cpuFreqGovernor = "powersave"; # set by tlp
     powerUpCommands =
     ''
       ${pkgs.hdparm}/sbin/hdparm -B1yYS6 /dev/sda
     '';
+    resumeCommands = powerUpCommands;
   };
 }
