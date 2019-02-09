@@ -43,7 +43,7 @@
   # services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 80 8000 8080 ];
+  networking.firewall.allowedTCPPorts = [ 80 8000 8080 9000 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   networking.firewall.allowedTCPPortRanges = [
     # kdeConnect:
