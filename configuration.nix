@@ -159,6 +159,7 @@
 
 
   environment.systemPackages = with pkgs; [
+    android-udev-rules
     coreutils
     utillinux
     linuxPackages.bbswitch
