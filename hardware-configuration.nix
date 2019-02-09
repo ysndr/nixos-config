@@ -59,6 +59,8 @@
   # To just use intel integrated graphics with Intel's open source driver
   # hardware.nvidiaOptimus.disable = true;
  
+  # microcode
+  hardware.cpu.intel.updateMicrocode = true;
 
   # activate bluetooth
   hardware.bluetooth.enable = true;
