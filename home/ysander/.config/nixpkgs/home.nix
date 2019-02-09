@@ -136,7 +136,7 @@ in {
     oh-my-zsh = {
       custom = "$HOME/.config/zsh/oh-my-zsh";
       enable = true;
-      plugins = ["git" "thefuck" "z" "rust" "cargo" "fancy-ctrl-z" "nix" "nix-shell" "git-flow-completion" ];
+      plugins = ["git" "docker" "thefuck" "z" "rust" "cargo" "fancy-ctrl-z" "nix" "nix-shell" "git-flow-completion" ];
       theme = "robbyrussell";
     };
     initExtra = ''
