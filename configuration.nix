@@ -66,7 +66,7 @@
     printing = {
       enable = true;
       browsing = true;
-      drivers = [pkgs.unstable.hplip];
+      drivers = [pkgs.hplip];
 
     };
     avahi = {
