@@ -100,7 +100,10 @@
 
   };
 
-  # include dconf se    rvice for gtk applications
+  services.gnome3.gnome-keyring.enable = true;
+  services.gnome3.chrome-gnome-shell.enable = true;
+
+  # include dconf service for gtk applications
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
   hardware.pulseaudio = {
