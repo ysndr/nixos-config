@@ -26,7 +26,6 @@
   # touchpad
   services.xserver.libinput.enable = true;
 
-  # To just use intel integrated graphics with Intel's open source driver
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
