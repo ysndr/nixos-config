@@ -2,8 +2,9 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... }:
-
-{
+let 
+  pkgs_i686 = pkgs.pkgsi686Linux;
+in {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
