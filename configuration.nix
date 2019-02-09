@@ -127,7 +127,12 @@
   #   uid = 1000;
   # };
 
-  users.extraGroups = { plugdev = {}; };
+  users.extraGroups = {
+    plugdev = {};
+    ysander = {
+      gid = 1000;
+    };
+  };
   users.extraUsers.ysander = {
     isNormalUser = true;
     home = "/home/ysander";
