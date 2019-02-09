@@ -12,9 +12,7 @@ let
       ark
       spectacle
       kgpg
-
-      redshift
-
+      
       firefox
       atom
       vscode
