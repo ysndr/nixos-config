@@ -1,9 +1,9 @@
 {
   allowUnfree = true;
   packageOverrides = super: rec {
-    steam-chrootenv = steam-chrootenv.override {
-      withPrimus = true;
-    };
+#    steam-chrootenv = super.steam-chrootenv.override {
+#      withPrimus = true;
+#    };
     steam = super.steam.override {
       withPrimus = true;
       extraPkgs = p: with p; [
