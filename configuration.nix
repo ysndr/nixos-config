@@ -188,8 +188,8 @@
 
     nano
 
-    unstable.firefox
-    unstable.google-chrome
+    firefox
+    google-chrome
 
 
     # gtk icons & themes
