@@ -34,23 +34,31 @@
 
   hardware.nvidia = {
     modesetting.enable = true;
-
+/*
           optimus_prime = {
             enable = true;
             # values are from lspci
             # try lspci | grep -P 'VGA|3D'
             intelBusId = "PCI:00:02:0";
             nvidiaBusId = "PCI:01:00:0";
+          }; */
           };
-  };
 
-  services.xserver.videoDrivers = [ "nvidiaBeta" ];
-# hardware.nvidiaOptimus.disable = true;
+
   hardware.bumblebee.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
+  hardware.bumblebee.driver = "nvidia";
+  hardware.bumblebee.group = "video";
+
+  hardware.bumblebee.pmMethod = "bbswitch";
+  hardware.bumblebee.connectDisplay = true;
+
+   hardware.opengl.extraPackages = [ pkgs.linuxPackages.nvidia_x11.out ];
+  hardware.opengl.extraPackages32 = [ pkgs_i686.linuxPackages.nvidia_x11.out ];
 
 
+  # To just use intel integrated graphics with Intel's open source driver
+  # hardware.nvidiaOptimus.disable = true;
+ 
 
   # activate bluetooth
   hardware.bluetooth.enable = true;
