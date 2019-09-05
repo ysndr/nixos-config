@@ -58,7 +58,6 @@ in {
     stdlib = pkgs.lib.readFile ./direnv/nix;
   };
 
-  
 
   programs.zsh = {
     dotDir = ".config/zsh";
@@ -101,6 +100,11 @@ in {
             rev = "master";
             sha256 = "03z89h8rrj8ynxnai77kmb5cx77gmgsfn6rhw77gaix2j3scr2kk";
           };
+        }
+        {
+          # will source zsh-autosuggestions.plugin.zsh
+          name = "local";
+          src = ./zsh;
         }
       /*{
           name = "enhancd";
