@@ -132,8 +132,6 @@ in {
         "rust" "cargo" "npm" 
 
         "nix-shell"
-        "nix-zsh-completions"
-        "zsh-syntax-highlighting"];
         "fd"
         ];
       theme = "robbyrussell";
