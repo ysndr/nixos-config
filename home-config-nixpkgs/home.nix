@@ -11,7 +11,6 @@ let
 in {
   imports = [./platform.nix];
   home.packages =  with pkgs; [
-    # docker_compose
     cachix
 
     bashInteractive
@@ -20,10 +19,10 @@ in {
     gitAndTools.git
 
     gopass
+    pass
     pwgen
     pinentry_mac
-    # qtpass
-
+    
     gnupg
     browserpass
 
@@ -34,9 +33,10 @@ in {
     jq
     fd
     bat
+    exa
     ripgrep
     thefuck
-    coreutils-full
+    tealdeer
     xsel
 
     openssh
@@ -188,6 +188,7 @@ in {
   };
 
   # home manager config
+  home.stateVersion = "18.09";
   programs.home-manager.enable = true;
   programs.home-manager.path = https://github.com/rycee/home-manager/archive/master.tar.gz;
 }
