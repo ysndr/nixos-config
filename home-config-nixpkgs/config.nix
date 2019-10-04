@@ -1,5 +1,7 @@
 {
   allowUnfree = true;
+  keep-outputs = true;
+  keep-derivations = true;
   packageOverrides = pkgs: rec {
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
