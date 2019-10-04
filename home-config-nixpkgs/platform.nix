@@ -90,5 +90,12 @@ else if builtins.currentSystem == "x86_64-linux" then
             tray = true;
         };
 
+        services.kdeconnect.enable = true;
+
+        services.keybase.enable = true;
+        services.syncthing = {
+            enable = true;
+            tray = true;
+        };
     }
 else {}
