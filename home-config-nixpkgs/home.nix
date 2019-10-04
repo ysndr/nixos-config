@@ -137,7 +137,7 @@ in {
       theme = "robbyrussell";
     };
     profileExtra = ''
-      . /Users/ysander/.nix-profile/etc/profile.d/nix.sh
+      . $HOME/.nix-profile/etc/profile.d/nix.sh
     '';
     initExtra = ''
 
