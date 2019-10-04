@@ -21,8 +21,7 @@ in {
     gopass
     pass
     pwgen
-    pinentry_mac
-    
+
     gnupg
     browserpass
 
