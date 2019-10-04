@@ -3,7 +3,10 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... }:
 let
-  pkgs_i686 = pkgs.pkgsi686Linux;
+
+  st-link-udev-rules = pkgs.runCommand "st-link-udev-rules" {} ''
+   install -Dm644 -t $out/etc/udev/rules.d ${./etc/udev/rules.d}/* '';
+
 in {
   imports =
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
@@ -80,9 +83,7 @@ in {
   # activate bluetooth
   hardware.bluetooth.enable = true;
 
-  services.udev.extraRules = ''
-  ''
-  + builtins.readFile  (./udev/70-st-link.rules);
+  services.udev.packages = [ st-link-udev-rules ];
 
   # services.udev.extraHwdb = ''
   # ''
