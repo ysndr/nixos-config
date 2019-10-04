@@ -1,6 +1,3 @@
-# See https://github.com/Mic92/dotfiles/blob/a0a9b7e358fa70a85cd468f8ca1fbb02ae0a91df/home/.direnvrc
-# and https://github.com/direnv/direnv/wiki/Nix
-
 use_nix() {
   local path="$(nix-instantiate --find-file nixpkgs)"
 
@@ -20,27 +17,29 @@ use_nix() {
     [[ shell.nix -nt "$cache" ]];
   then
     [ -d .direnv ] || mkdir .direnv
+    local dump_cmd="echo -n _____direnv_____; \"$direnv\" dump bash"
     local tmp=$(nix-shell --show-trace --pure "$@" \
-      --run "\"$direnv\" dump bash")
+      --run "$dump_cmd" | grep -oP '(?<=_____direnv_____).*')
     echo "$tmp" > "$cache"
     update_drv=1
   else
     log_status using cached derivation
   fi
   local term_backup=$TERM path_backup=$PATH
-  if [ -z ${TMPDIR+x} ]; then
-    local tmp_backup=$TMPDIR
-  fi
+#  if [ -z ${TMPDIR+x} ]; then
+#    local tmp_backup=$TMPDIR
+#  fi
+#
+#  log_status eval $cache
+#  eval "$(< $cache)"
+#  export PATH=$PATH:$path_backup TERM=$term_backup TMPDIR=$tmp_backup
+#  if [ -z ${tmp_backup+x} ]; then
+#    export TMPDIR=${tmp_backup}
+#  else
+#    unset TMPDIR
+#  fi
 
-  eval "$(< $cache)"
-  export PATH=$PATH:$path_backup TERM=$term_backup TMPDIR=$tmp_backup
-  if [ -z ${tmp_backup+x} ]; then
-    export TMPDIR=${tmp_backup}
-  else
-    unset TMPDIR
-  fi
-
-  # `nix-shell --pure` will invalid ssl certificate paths
+  # `nix-shell --pure` sets invalid ssl certificate paths
   if [ "${SSL_CERT_FILE:-}" = /no-cert-file.crt ]; then
     unset SSL_CERT_FILE
   fi
