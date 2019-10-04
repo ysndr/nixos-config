@@ -79,7 +79,7 @@ in {
             owner = "zsh-users";
             repo = "zsh-syntax-highlighting";
             rev = "master";
-            sha256 = "080ingwxh6c946rqw004imah36ywfp00va844iadnwpnlrvvc8bb";
+            sha256 = "sha256:18wsrxaclhy0mql8rsvjg1m9vhxnkr7ggb7nkr2vma74fbmryynd";
           };
         }
         {
@@ -98,7 +98,7 @@ in {
             owner = "chisui";
             repo = "zsh-nix-shell";
             rev = "master";
-            sha256 = "03z89h8rrj8ynxnai77kmb5cx77gmgsfn6rhw77gaix2j3scr2kk";
+            sha256 = "sha256:01w59zzdj12p4ag9yla9ycxx58pg3rah2hnnf3sw4yk95w3hlzi6";
           };
         }
         {
