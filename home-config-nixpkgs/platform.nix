@@ -54,6 +54,12 @@ else if builtins.currentSystem == "x86_64-linux" then
 
             hunspellDicts.de-de
             hunspellDicts.en-us
+
+            noto-fonts
+            noto-fonts-emoji
+            emojione
+            fira-code
+            fira-code-symbols
         ];
 
         programs.zsh.shellAliases = {
