@@ -16,7 +16,7 @@ if builtins.currentSystem == "x86_64-darwin" then
             fontsCacheConfig
 
             coreutils-full
-
+            gnugrep
         ];
         programs.zsh = {
             initExtra = ''
