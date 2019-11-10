@@ -47,6 +47,9 @@ in {
 
   fonts.fontconfig.enable = true;
 
+  programs.gpg.enable = true;
+  
+
   # programs.command-not-found.enable = true;
   programs.direnv = {
     enable = true;
@@ -65,6 +68,7 @@ in {
     enableAutosuggestions = true;
     shellAliases = {
       shell = "nix-shell";
+      weather = "curl wttr.in/\\"; 
     };
     history = {
       expireDuplicatesFirst = true;
@@ -135,9 +139,11 @@ in {
         ];
       theme = "robbyrussell";
     };
+
     profileExtra = ''
       . $HOME/.nix-profile/etc/profile.d/nix.sh
     '';
+
     initExtra = ''
 
       local _shell_prompt_info_wrapped
@@ -176,8 +182,6 @@ in {
       add-zsh-hook precmd _nix_shell_hook
 
       export PROMPT=$\{_shell_prompt_info_wrapped\}$PROMPT
-
-
 
       bindkey "[D" backward-word
       bindkey "[C" forward-word
