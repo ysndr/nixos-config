@@ -8,6 +8,8 @@ let
       });
     });
 
+  comma = pkgs.callPackage (fetchGit {url = "https://github.com/Shopify/comma"; }) {};
+
 in {
   imports = [./platform.nix ./shell-config.nix];
   home.packages =  with pkgs; [
@@ -15,6 +17,7 @@ in {
 
     bashInteractive
 
+    comma
     gitAndTools.gitflow
     gitAndTools.git
 
