@@ -6,7 +6,7 @@
     nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
       inherit pkgs;
       repoOverrides = {
-        local = import /Volumes/projects/nur-packages {};
+        local = import /Volumes/projects/nur-packages { inherit pkgs; };
         ## remote locations are also possible:
         # mic92 = import (builtins.fetchTarball "https://github.com/your-user/nur-packages/archive/master.tar.gz");
       };
