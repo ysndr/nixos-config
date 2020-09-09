@@ -1,6 +1,6 @@
 { pkgs, ...}:
 if builtins.currentSystem == "x86_64-darwin" then
-    let 
+    let
         fontDirectories = [ "/Library/Fonts" "/System/Library/Fonts" "~/Library/Fonts" ];
         fontsConfig = pkgs.makeFontsConf {
             inherit fontDirectories;
@@ -19,10 +19,12 @@ if builtins.currentSystem == "x86_64-darwin" then
             gnugrep
         ];
         programs.zsh = {
+            profileExtra=''
+            '';
             initExtra = ''
-                export FONTCONFIG_FILE2=${fontsConfig}
-                export PATH="$PATH:/Users/ysander/Library/Launchers"
                 export FONTCONFIG_FILE=${fontsConfig}
+                export PATH="$PATH:/Users/ysander/Library/Launchers"
+                test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh"
             '';
         };
     }
@@ -42,7 +44,7 @@ else if builtins.currentSystem == "x86_64-linux" then
             pulseeffects
             qtpass
             spotify
-            tdesktop     
+            tdesktop
             typora
             vscode
 
