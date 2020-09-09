@@ -33,18 +33,23 @@ else if builtins.currentSystem == "x86_64-linux" then
 
     in {
         home.packages = with pkgs; [
+            albert
+            alacritty
             atom
             evince
             firefox
             gitkraken
             gnome3.eog
+            gnome3.evolution
             gnome3.gnome-tweak-tool
             google-chrome
             kmail
+            mdcat
             pulseeffects
             qtpass
             spotify
-            tdesktop
+            tdesktop     
+            tilix
             typora
             vscode
 
@@ -52,7 +57,7 @@ else if builtins.currentSystem == "x86_64-linux" then
 
             libinput-gestures
 
-            ksshaskpass
+            #ksshaskpass
 
             hunspellDicts.de-de
             hunspellDicts.en-us
@@ -62,6 +67,8 @@ else if builtins.currentSystem == "x86_64-linux" then
             emojione
             fira-code
             fira-code-symbols
+
+	    yaru-theme
         ];
 
         programs.zsh.shellAliases = {
@@ -72,13 +79,13 @@ else if builtins.currentSystem == "x86_64-linux" then
             enable = true;
             enableSshSupport = true;
             defaultCacheTtl = 3600;
+	    pinentryFlavor = "curses";
             extraConfig = ''
-            pinentry-program ${pkgs.pinentry}/bin/pinentry
             '';
         };
 
         services.redshift = {
-            enable = true;
+            enable = false;
             latitude = "52.01667";
             longitude = "8.51667";
             temperature = {

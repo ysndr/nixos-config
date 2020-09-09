@@ -47,17 +47,17 @@ in {
 
     zoxide fzf
 
+    rsync
     # fonts
     source-code-pro
+    joypixels
   ];
 
   fonts.fontconfig.enable = true;
 
   programs.gpg.enable = true;
 
-
-  # programs.command-not-found.enable = true;
-
+  programs.browserpass.enable = true;
 
   programs.taskwarrior = {
     enable = true;

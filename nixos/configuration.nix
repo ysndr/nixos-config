@@ -1,3 +1,5 @@
+
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -14,10 +16,12 @@
   networking.networkmanager.enable = true;  # Enables wireless support via NetworkManager.
 
   # Select internationalisation properties.
+  console.font = "Lat2-Terminus16";
+#  console.keyMap = "en_US";
+
+
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "de";
-    defaultLocale = "en_DK.UTF-8";
+    defaultLocale = "en_SE.UTF-8";
   };
 
   # Set your time zone.
@@ -44,22 +48,8 @@
 
   # Open ports in the firewall.
 
-  networking.firewall = {
-    allowedTCPPorts = [ 80 8000 8080 9000 3000 3333 ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    allowedTCPPortRanges = [
-      # kdeConnect:
-      { from = 1714; to = 1764; }
-      { from = 8080; to = 8090; }
-      { from = 4000; to = 4000; }
-      { from = 42921; to = 42921; }
-    ];
-    allowedUDPPortRanges = [
-      # kdeConnect:
-      { from = 1714; to = 1764; }
-    ];
-    enable = true;
-  };
+  networking.firewall.enable = false;
+  
 
   # Enable Docker
 
@@ -67,9 +57,9 @@
     enable = true;
     enableOnBoot = false;
   };
-
   
   # Enable CUPS to print documents.
+  /**
   services = {
     printing = {
       enable = true;
@@ -82,29 +72,26 @@
       nssmdns = true;
     };
   };
+  */
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     # keyboard settings
-    layout = "de";
+#    layout = "en";
     xkbOptions = "eurosign:e";
 
     # Enable touchpad support.
     libinput = {
       enable = true;
-      clickMethod = "clickfinger";
+      #clickMethod = "clickfinger";
     };
 
-    multitouch = {
-      enable=true;
-      ignorePalm=true;
-    };
 
     # Enable the KDE Desktop Environment.
     # displayManager.sddm.enable = true;
-    displayManager.gdm.enable = true;
-    desktopManager.plasma5.enable = true;
+    displayManager.gdm.enable = false;
+    # desktopManager.plasma5.enable = true;
     desktopManager.gnome3.enable = true;
 
   };
@@ -128,10 +115,6 @@
         monospace = [ "Fira Code" "DejaVu Sans Mono" ];
       };
       enable = true;
-      ultimate = {
-        enable = true;
-        preset = "ultimate5";
-      };
       useEmbeddedBitmaps = true;
     };
   };
@@ -149,7 +132,7 @@
     groups = {
       plugdev = {};
       ysander = {
-        gid = 1000;
+        gid = 1001;
       };
     };
     users.ysander = {
@@ -216,13 +199,14 @@
 
   ];
   environment.pathsToLink = [ "/share/zsh" ];
-
-
+  
+  services.openssh.enable  = true;
+  services.openssh.passwordAuthentication = true;
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "18.03"; # Did you read the comment?
+  system.stateVersion = "19.03"; # Did you read the comment?
 
 
   nix = {
