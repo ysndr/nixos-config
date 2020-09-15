@@ -1,5 +1,6 @@
 
 
+
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -12,47 +13,37 @@
       ./hardware-configuration.nix
     ];
 
+  boot = {
+    kernelPackages = pkgs.linuxPackages;
+    supportedFilesystems = [ "btrfs" ];
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+  };
+  hardware.enableAllFirmware = true;
+  system.fsPackages = [ pkgs.exfat ];
+  
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;  # Enables wireless support via NetworkManager.
 
-  # Select internationalisation properties.
-  console.font = "Lat2-Terminus16";
-#  console.keyMap = "en_US";
-
-
-  i18n = {
-    defaultLocale = "en_SE.UTF-8";
-  };
-
   # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+  time.timeZone = "Europe/Stockholm";
 
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs = {
     bash.enableCompletion = true;
-    qt5ct.enable = true;
     zsh.enable = true;
-    browserpass.enable=true;
   };
-  # programs.mtr.enable = true;
-
-
-
-
-  system.fsPackages = [ pkgs.exfat ];
-
 
   # List services that you want to enable:
 
   # Open ports in the firewall.
 
   networking.firewall.enable = false;
-  
-
+ 
   # Enable Docker
-
+  
   virtualisation.docker = {
     enable = true;
     enableOnBoot = false;
@@ -77,34 +68,16 @@
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
-    # keyboard settings
-#    layout = "en";
+    autorun = false;
     xkbOptions = "eurosign:e";
-
     # Enable touchpad support.
     libinput = {
       enable = true;
       #clickMethod = "clickfinger";
     };
-
-
-    # Enable the KDE Desktop Environment.
-    # displayManager.sddm.enable = true;
-    displayManager.gdm.enable = false;
-    # desktopManager.plasma5.enable = true;
-    desktopManager.gnome3.enable = true;
-
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
   };
-
-  services.gnome3 = {
-    gnome-keyring.enable = true;
-    chrome-gnome-shell.enable = true;
-  };
-
-  # include dconf service for gtk applications
-  services.dbus.packages = with pkgs; [ gnome3.dconf ];
-
- 
 
   fonts = {
     enableDefaultFonts = true;
@@ -131,9 +104,6 @@
   users = {
     groups = {
       plugdev = {};
-      ysander = {
-        gid = 1001;
-      };
     };
     users.ysander = {
       isNormalUser = true;
@@ -145,9 +115,6 @@
   };
 
  
-
-
-
   nixpkgs.config = {
     # Allow proprietary packages
     allowUnfree = true;
@@ -165,38 +132,15 @@
   environment.systemPackages = with pkgs; [
     coreutils
     utillinux
-
+     
     which file tree lsof
     zip unzip
-    htop
+    htop ytop
     psmisc # pstree, killall et al
 
     curl wget
-#    kdeconnect
-
-
     gitAndTools.gitFull
-    quilt
-
-    xdg_utils
-    xfontsel
-
     nano
-
-    firefox
-
-
-    # gtk icons & themes
-    gnome3.gtk
-    gnome2.gtk
-    hicolor_icon_theme
-    shared_mime_info
-    arc-theme
-
-    nox
-
-    zsh
-
   ];
   environment.pathsToLink = [ "/share/zsh" ];
   
@@ -206,11 +150,9 @@
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
   # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
-
+  system.stateVersion = "20.09"; # Did you read the comment?
 
   nix = {
-
     ## Garbage Collection
     gc.automatic = true;
     gc.dates = "weekly";

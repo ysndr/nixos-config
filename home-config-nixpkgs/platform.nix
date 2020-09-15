@@ -1,3 +1,4 @@
+
 { pkgs, ...}:
 if builtins.currentSystem == "x86_64-darwin" then
     let
@@ -33,31 +34,9 @@ else if builtins.currentSystem == "x86_64-linux" then
 
     in {
         home.packages = with pkgs; [
-            albert
-            alacritty
-            atom
-            evince
-            firefox
-            gitkraken
-            gnome3.eog
-            gnome3.evolution
-            gnome3.gnome-tweak-tool
-            google-chrome
-            kmail
             mdcat
             pulseeffects
-            qtpass
-            spotify
-            tdesktop     
-            tilix
-            typora
-            vscode
-
             docker_compose
-
-            libinput-gestures
-
-            #ksshaskpass
 
             hunspellDicts.de-de
             hunspellDicts.en-us
@@ -68,7 +47,6 @@ else if builtins.currentSystem == "x86_64-linux" then
             fira-code
             fira-code-symbols
 
-	    yaru-theme
         ];
 
         programs.zsh.shellAliases = {
@@ -98,8 +76,6 @@ else if builtins.currentSystem == "x86_64-linux" then
             };
             tray = true;
         };
-
-        services.kdeconnect.enable = true;
 
         services.keybase.enable = true;
         services.syncthing = {

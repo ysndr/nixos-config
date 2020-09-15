@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 { pkgs, ...}:
 let
 dircolors_src = (fetchGit {
@@ -39,13 +46,14 @@ in
       extended = true;
     };
     plugins = [
+
         {
           name = "zsh-syntax-highlighting";
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-syntax-highlighting";
             rev = "master";
-            sha256 = "sha256:18wsrxaclhy0mql8rsvjg1m9vhxnkr7ggb7nkr2vma74fbmryynd";
+            sha256 = "sha256:0s1cjm8psjwmrg8qdhdg48qyvp8nqk7bdgvqivgc5v9m27m7h5cg";
           };
         }
         {
@@ -66,17 +74,7 @@ in
             sha256 = "sha256:0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
           };
         }
-        /*
-        # {
-        #   name = "nix-zsh-completions";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "spwhitt";
-        #     repo = "nix-zsh-completions";
-        #     rev = "f9a6382";
-        #     sha256 = "1nlcglsgb82qp083b1x29vgxq3pgmyrsw6ghbif2jkbn9xibbnz3";
-        #   };
-        # }
-        */
+	/*
         {
           name = "timewarrior";
           src = pkgs.fetchFromGitHub {
@@ -86,30 +84,17 @@ in
             sha256 = "sha256:0qqrvsa4yb4xck3s6ha9j4kn0kg3ik1jkb4m57nbvq1y8wm1vlga";
           };
         }
+	*/
+        /*
         {
           name = "taskwarrior";
           src = "${pkgs.taskwarrior.src}/scripts/zsh";
         }
+        */
         {
           name = "local";
           src = ./zsh/local;
         }
-        # {
-        #   # will source zsh-autosuggestions.plugin.zsh
-        #   name = "nix-shell";
-        #   src = ./zsh/nix-shell;
-        # }
-      /*{
-          name = "enhancd";
-          file = "init.sh";
-          src = pkgs.fetchFromGitHub {
-            owner = "b4b4r07";
-            repo = "enhancd";
-            rev = "v2.2.1";
-            sha256 = "0iqa9j09fwm6nj5rpip87x3hnvbbz9w9ajgm6wkrd5fls8fn8i5g";
-          };
-        }
-      */
     ];
     oh-my-zsh = {
       custom = "$HOME/.config/zsh";
@@ -119,7 +104,7 @@ in
         "git-flow"
         "thefuck"
         "fancy-ctrl-z"
-        "timewarrior"
+#        "timewarrior"
         "rust" "cargo" "npm"
 
         "nix-shell"
@@ -129,7 +114,7 @@ in
     };
 
     profileExtra = ''
-      source $HOME/.nix-profile/etc/profile.d/nix.sh
+      [[ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]] && source $HOME/.nix-profile/etc/profile.d/nix.sh
     '';
 
     initExtra = ''
