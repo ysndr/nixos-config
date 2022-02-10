@@ -8,7 +8,7 @@
     
     matchBlocks = {
       "*" = {
-      	identityFile = "/home/ysander/.ssh/gpg_id.pub";
+      	identityFile = "$HOME/.ssh/gpg_id.pub";
       };    
     };
   };

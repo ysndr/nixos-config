@@ -1,71 +1,101 @@
 args@{ pkgs, platform, ... }:
 let
 
-  comma = pkgs.callPackage (pkgs.fetchgit {url = "https://github.com/Shopify/comma"; sha256 = "sha256-IT7zlcM1Oh4sWeCJ1m4NkteuajPxTnNo1tbitG0eqlg="; }) {};
+  # comma = pkgs.callPackage (pkgs.fetchgit { url = "https://github.com/nix-community/comma"; sha256 = "sha256-WBIQmwlkb/GMoOq+Dnyrk8YmgiM/wJnc5HYZP8Uw72E="; }) { };
 
-in rec {
-  imports = [ "../platform/{platform}/home.nix" ./shell-config.nix ./ssh.nix ];
-  
-  nixpkgs.config = import ./config.nix;
-  xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
-  
-  home.packages =  with pkgs; [
-    cachix
+  python = pkgs.python3.withPackages (p: with p; [
+    numpy
+    pandas
+    tqdm
+  ]);
 
-    nixfmt
 
-    comma
-    gh    
+in
+rec {
+  # imports = [ ../platform/${platform}/home.nix ./shell-config.nix ./ssh.nix ];
 
-    gopass
-    pass
-    pwgen
-    
-    python3
+  # nixpkgs.config = import ./config.nix { inherit pkgs platform; };
+  # xdg.configFile."nixpkgs/config.nix".text = toString nixpkgs.config;
 
-    jq
-    fd
-    bat
-    exa
-    ripgrep
-    tealdeer
-    thefuck
-    
-    timewarrior
-    xsel
-
-    tmux
-
-    fzf
-
-    rsync
- 
-    poppler_utils
-  ];
 
   fonts.fontconfig.enable = true;
-  
-  programs.git = {
-    enable =true;
-    delta.enable = true;
-    userEmail = "me@ysndr.de";
-    userName = "ysndr";
-  };
-
-  programs.gpg.enable = true;
 
 
+  home.packages = with pkgs; [
 
-  programs.browserpass.enable = true;
 
-  programs.taskwarrior = {
-    enable = true;
-  };
+    # # nixpkgs-fmt
+    # nix
+    # # rnix-lsp
+    # cachix
 
- 
-  programs.home-manager.enable = true;
+    # # run commands without installing
+
+    # # github cli
+    # gh
+
+    # # some password management
+    # gopass
+    # gopass-jsonapi
+    # pass
+    # pwgen
+
+    # # python with some essential programs
+    # python
+
+    # # utilities
+
+    # ## use module?
+    # jq
+    # bat
+
+    # fd
+    # exa
+    # ripgrep
+    # tealdeer
+    # thefuck
+    # rsync
+
+    # timewarrior
+    # xsel
+
+
+    # openssh
+
+    # tmux
+
+    # # fonts
+    # source-code-pro
+    # joypixels
+    # alegreya
+    # alegreya-sans
+    # (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
+
+  # programs = {
+  #   exa = {
+  #     enable = true;
+  #     enableAliases = true;
+  #   };
+
+  #   git = {
+  #     enable = true;
+  #     delta.enable = true;
+  #     userEmail = "me@ysndr.de";
+  #     userName = "ysndr";
+  #   };
+
+  #   gpg.enable = true;
+
+  #   browserpass.enable = true;
+
+  #   taskwarrior.enable = true;
+
+  #   # home-manager.enable = true;
+  # };
 
   home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
 
- 
+
 }

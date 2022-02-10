@@ -18,6 +18,11 @@
             gnugrep
         ];
         programs.zsh = {
+            
+            dirHashes = {
+                git = "Volumes/projects/git";
+            };
+
             profileExtra=''
             '';
             initExtra = ''

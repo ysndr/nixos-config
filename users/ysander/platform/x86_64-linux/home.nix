@@ -49,8 +49,11 @@ in {
         };
 
 
-        programs.zsh.shellAliases = {
+        programs.zsh = {
+          enableVteIntegration = true;
+          shellAliases = {
             open = "xdg-open";
+          };
         };
 
         services.gpg-agent = {
