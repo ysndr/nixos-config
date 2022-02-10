@@ -4,12 +4,11 @@ let
   comma = pkgs.callPackage (pkgs.fetchgit {url = "https://github.com/Shopify/comma"; sha256 = "sha256-IT7zlcM1Oh4sWeCJ1m4NkteuajPxTnNo1tbitG0eqlg="; }) {};
 
 in rec {
-  imports = [ platform ./shell-config.nix ./ssh.nix ];
+  imports = [ "../platform/{platform}/home.nix" ./shell-config.nix ./ssh.nix ];
   
   nixpkgs.config = import ./config.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
   
-   
   home.packages =  with pkgs; [
     cachix
 
@@ -45,6 +44,7 @@ in rec {
   ];
 
   fonts.fontconfig.enable = true;
+  
   programs.git = {
     enable =true;
     delta.enable = true;
@@ -65,7 +65,7 @@ in rec {
  
   programs.home-manager.enable = true;
 
- home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
+  home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
 
  
 }
