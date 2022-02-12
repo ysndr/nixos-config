@@ -103,15 +103,15 @@ in
             sha256 = "sha256:0snhch9hfy83d4amkyxx33izvkhbwmindy0zjjk28hih1a9l2jmx";
           };
         }
-        # {
-        #   name = "timewarrior";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "svenXY";
-        #     repo = "timewarrior";
-        #     rev = "master";
-        #     sha256 = "sha256-S5N00uVYF79naaohVZA8+Y5nPRocaDCWOKjlyu5bry4=";
-        #   };
-        # }
+        {
+          name = "timewarrior";
+          src = pkgs.fetchFromGitHub {
+            owner = "svenXY";
+            repo = "timewarrior";
+            rev = "master";
+            sha256 = "sha256-S5N00uVYF79naaohVZA8+Y5nPRocaDCWOKjlyu5bry4=";
+          };
+        }
         {
           name = "local";
           src = ./zsh/local;
