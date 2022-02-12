@@ -17,12 +17,9 @@ rec {
   nixpkgs.config = import ./config.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
   xdg.configFile."nix/nix.conf".source = ./nix.conf;
-
-
   nix.registry.nixpkgs.flake = nixpkgs_flake;
 
   fonts.fontconfig.enable = true;
-
 
   home.packages = with pkgs; [
 

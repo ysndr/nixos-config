@@ -6,7 +6,8 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./wm.nix
     ];
@@ -14,7 +15,7 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot .supportedFilesystems = ["zfs"];
+  boot .supportedFilesystems = [ "zfs" ];
 
   networking.hostId = "cafeaffe";
   networking.hostName = "tweag-cb"; # Define your hostname.
@@ -60,8 +61,8 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
-  
-  
+
+
 
   # List services that you want to enable:
 
@@ -88,5 +89,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "21.05"; # Did you read the comment?
- 
+
 }

@@ -15,20 +15,23 @@
     efi.canTouchEfiVariables = true;
     systemd-boot.enable = true;
   };
-  
+
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/3f7a1eb9-aba1-4dbf-b87c-5a99c7f38b3d";
+    {
+      device = "/dev/disk/by-uuid/3f7a1eb9-aba1-4dbf-b87c-5a99c7f38b3d";
       fsType = "btrfs";
       options = [ "subvol=root/nixos-09-2017" ];
     };
 
   fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/c1579a69-8ddb-45ed-8879-e94ea6d5c062";
+    {
+      device = "/dev/disk/by-uuid/c1579a69-8ddb-45ed-8879-e94ea6d5c062";
       fsType = "xfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/AAFA-A81A";
+    {
+      device = "/dev/disk/by-uuid/AAFA-A81A";
       fsType = "vfat";
     };
 

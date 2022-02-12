@@ -7,10 +7,10 @@ let
 in
 {
   programs = {
-    
+
     bash.enable = true;
     fzf.enable = true;
-    
+
     direnv = {
       enable = true;
       enableZshIntegration = true;
@@ -26,7 +26,7 @@ in
       enableBashIntegration = true;
       enableZshIntegration = true;
     };
-  
+
     starship = {
       enable = true;
       enableBashIntegration = true;
@@ -39,7 +39,7 @@ in
           pipestatus = true;
         };
         cmd_duration.show_notifications = true;
-        git_metrics ={
+        git_metrics = {
           disabled = false;
           format = "[+$added]($added_style)/[-$deleted]($deleted_style)";
         };
@@ -65,12 +65,12 @@ in
       dotDir = ".config/zsh";
       enable = true;
       enableCompletion = false;
-      enableSyntaxHighlighting  = true;
+      enableSyntaxHighlighting = true;
       enableAutosuggestions = true;
 
       dirHashes = {
-        docs  = "$HOME/Documents";
-        dl    = "$HOME/Downloads";
+        docs = "$HOME/Documents";
+        dl = "$HOME/Downloads";
       };
 
       shellAliases = {

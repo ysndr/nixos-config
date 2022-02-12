@@ -1,5 +1,3 @@
-
-
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
@@ -8,16 +6,17 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
   networking.hostName = "nixos"; # Define your hostname.
-  networking.networkmanager.enable = true;  # Enables wireless support via NetworkManager.
+  networking.networkmanager.enable = true; # Enables wireless support via NetworkManager.
 
   # Select internationalisation properties.
   console.font = "Lat2-Terminus16";
-#  console.keyMap = "en_US";
+  #  console.keyMap = "en_US";
 
 
   i18n = {
@@ -34,7 +33,7 @@
     bash.enableCompletion = true;
     qt5ct.enable = true;
     zsh.enable = true;
-    browserpass.enable=true;
+    browserpass.enable = true;
   };
   # programs.mtr.enable = true;
 
@@ -49,7 +48,7 @@
   # Open ports in the firewall.
 
   networking.firewall.enable = false;
-  
+
 
   # Enable Docker
 
@@ -57,28 +56,28 @@
     enable = true;
     enableOnBoot = false;
   };
-  
+
   # Enable CUPS to print documents.
   /**
-  services = {
+    services = {
     printing = {
-      enable = true;
-      browsing = true;
-      drivers = [pkgs.hplip];
+    enable = true;
+    browsing = true;
+    drivers = [pkgs.hplip];
 
     };
     avahi = {
-      enable = true;
-      nssmdns = true;
+    enable = true;
+    nssmdns = true;
     };
-  };
+    };
   */
 
   # Enable the X11 windowing system.
   services.xserver = {
     enable = true;
     # keyboard settings
-#    layout = "en";
+    #    layout = "en";
     xkbOptions = "eurosign:e";
 
     # Enable touchpad support.
@@ -104,14 +103,14 @@
   # include dconf service for gtk applications
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
- 
+
 
   fonts = {
     enableDefaultFonts = true;
     fontconfig = {
       defaultFonts = {
-        sansSerif = ["Noto Sans Regular" "DejaVu Sans"];
-        serif = ["Noto Serif Regular" "DejaVu Serif" ];
+        sansSerif = [ "Noto Sans Regular" "DejaVu Sans" ];
+        serif = [ "Noto Serif Regular" "DejaVu Serif" ];
         monospace = [ "Fira Code" "DejaVu Sans Mono" ];
       };
       enable = true;
@@ -130,7 +129,7 @@
 
   users = {
     groups = {
-      plugdev = {};
+      plugdev = { };
       ysander = {
         gid = 1001;
       };
@@ -139,12 +138,12 @@
       isNormalUser = true;
       home = "/home/ysander";
       description = "Yannik Sander";
-      extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" "input" "plugdev" "ysander"];
+      extraGroups = [ "wheel" "networkmanager" "audio" "video" "docker" "input" "plugdev" "ysander" ];
       shell = "/run/current-system/sw/bin/zsh";
     };
   };
 
- 
+
 
 
 
@@ -166,13 +165,18 @@
     coreutils
     utillinux
 
-    which file tree lsof
-    zip unzip
+    which
+    file
+    tree
+    lsof
+    zip
+    unzip
     htop
     psmisc # pstree, killall et al
 
-    curl wget
-#    kdeconnect
+    curl
+    wget
+    #    kdeconnect
 
 
     gitAndTools.gitFull
@@ -199,8 +203,8 @@
 
   ];
   environment.pathsToLink = [ "/share/zsh" ];
-  
-  services.openssh.enable  = true;
+
+  services.openssh.enable = true;
   services.openssh.passwordAuthentication = true;
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
@@ -220,7 +224,7 @@
       "https://cache.nixos.org/"
     ];
     binaryCachePublicKeys = [
-    
+
     ];
     trustedUsers = [ "root" "ysander" ];
   };
