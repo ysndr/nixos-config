@@ -1,7 +1,7 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.home-manager.inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = { self, nixpkgs, home-manager }: {
 
@@ -36,7 +36,8 @@
     	username = "ysander";
     	stateVersion = "21.05";
     	extraSpecialArgs = {
-          platform = system; 
+          inherit system;
+          nixpkgs_flake = nixpkgs;
         };
     	configuration = {...}: {
     	 imports = [ ./users/${username}/home ];
@@ -44,21 +45,22 @@
     };
 
      homeConfigurations."ysander@mbp-2018" = home-manager.lib.homeManagerConfiguration rec {
-      
       system = "x86_64-darwin";
-    	homeDirectory = "/Users/${username}";
     	username = "ysander";
+    	homeDirectory = "/Users/${username}";
     	stateVersion = "21.05";
     	extraSpecialArgs = {
-          platform = system; 
-        };
+          inherit system;
+          nixpkgs_flake = nixpkgs;
+      };
     	configuration = {...}: {
-    	#  imports = [ ./users/${username}/home ];
+    	 imports = [ ./users/${username}/home ];
     	};
     };
     
-    packages."x86_64-linux" = {
-      home-manager = home-manager.packages."x86_64-linux".home-manager;
+    packages = {
+      "x86_64-linux" = home-manager.packages."x86_64-linux";
+      "x86_64-darwin" = home-manager.packages."x86_64-darwin";
     };
 
     apps = home-manager.apps;
