@@ -17,7 +17,7 @@ rec {
   nixpkgs.config = import ./config.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
   xdg.configFile."nix/nix.conf".text = import ./nix.conf.nix (import ./secrets.nix);
-  nix.registry.nixpkgs.flake = nixpkgs_flake;
+  nix.registry = import ./registry.nix { inherit nixpkgs_flake; };
 
   fonts.fontconfig.enable = true;
 
