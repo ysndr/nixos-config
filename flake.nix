@@ -1,17 +1,21 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.home-manager.url = "github:nix-community/home-manager";
-  inputs.home-manager.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-  outputs = { self, nixpkgs, home-manager }: {
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    darwin.url = "github:lnl7/nix-darwin/master";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+  };
+
+  outputs = { self, nixpkgs, home-manager, darwin }: {
 
     nixosConfigurations."tweag" = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules =
         [
           ./machines/tweag
-          ./machines/mbp-2018
-
           ./users/ysander
 
           (import ./common { inherit nixpkgs; })
@@ -29,6 +33,19 @@
           #   }
           # }
         ];
+    };
+
+
+    # activate with:
+    #
+    # $ nix build ~/.config/darwin\#darwinConfigurations.Johns-MacBook.system
+    # $ ./result/sw/bin/darwin-rebuild switch --flake ~/.config/darwin
+    ###
+    darwinConfigurations."Yanniks-MacBook-Pro" = darwin.lib.darwinSystem {
+      system = "x86_64-darwin";
+      modules = [ 
+        ./machines/mbp-2018
+      ];
     };
 
     homeConfigurations."ysander@tweag" = home-manager.lib.homeManagerConfiguration rec {
@@ -64,7 +81,10 @@
       "x86_64-darwin" = home-manager.packages."x86_64-darwin";
     };
 
-    apps = home-manager.apps;
+    apps = {
+      x86_64-darwin = home-manager.apps."x86_64-darwin";
+      x86_64-linux = home-manager.apps."x86_64-linux";
+    };
 
   };
 }
