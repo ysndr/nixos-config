@@ -85,15 +85,6 @@ in
       };
 
       plugins = [
-        # {
-        #   name = "nix-zsh-completions";
-        #   src = pkgs.fetchFromGitHub {
-        #     owner = "spwhitt";
-        #     repo = "nix-zsh-completions";
-        #     rev = "f9a6382";
-        #     sha256 = "sha256-S5N00uVYF79naaohVZA8+Y5nPRocaDCWOKjlyu5bry4=";
-        #   };
-        # }
         {
           name = "nix-shell";
           src = pkgs.fetchFromGitHub {
