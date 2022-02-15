@@ -49,6 +49,7 @@ in
           behind = ''⇣''${count}'';
         };
         shlvl = {
+          symbol = "↕ ";
           disabled = false;
         };
         sudo.disabled = true;
