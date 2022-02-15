@@ -44,9 +44,9 @@ in
           format = "[+$added]($added_style)/[-$deleted]($deleted_style)";
         };
         git_status = {
-          # ahead = "⇡${count}";
-          # diverged = "⇕⇡$${ahead_count}⇣$${behind_count}";
-          # behind = "⇣$${count}";
+          ahead = ''⇡''${count}'';
+          diverged = ''⇕⇡''${ahead_count}⇣''${behind_count}'';
+          behind = ''⇣''${count}'';
         };
         shlvl = {
           disabled = false;
@@ -138,6 +138,4 @@ in
       '';
     };
   };
-  # unset system set (i.e. gnome keyring) AUTH_SOCK so gpg can override it
-  home.sessionVariables.SSH_AUTH_SOCK = "";
 }
