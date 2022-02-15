@@ -17,6 +17,8 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
+  nix.trustedUsers = [ "root" "ysander" ];
+
   programs.zsh.enable = true;
 
   programs.gnupg.agent = {
