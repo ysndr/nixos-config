@@ -2,7 +2,7 @@
 let
   dircolors_src = (pkgs.fetchgit {
     url = "https://github.com/trapd00r/LS_COLORS";
-    sha256 = "sha256-pyn3VnWDn5y7D/cVFV4e536ofolxBypE/01aSxDlIZI=";
+    sha256 = "sha256-MVESURX3tNHxnFiLCJIlKOCLbXeoz4OBGzuoRZiurb8=";
   });
 in
 {

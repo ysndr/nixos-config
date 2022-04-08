@@ -54,37 +54,45 @@
       username = "ysander";
       stateVersion = "21.05";
       extraSpecialArgs = {
-        inherit system;
+        system = "linux";
         nixpkgs_flake = nixpkgs;
       };
       configuration = { ... }: {
-        imports = [ ./users/${username}/home ];
+        imports = [ ./users/common/home ./users/${username}/home ];
       };
     };
 
-    homeConfigurations."ysander@mbp-2018" = home-manager.lib.homeManagerConfiguration rec {
-      system = "x86_64-darwin";
+    homeConfigurations."ysander@mbp-2021" = home-manager.lib.homeManagerConfiguration rec {
+      system = "aarch64-darwin";
       username = "ysander";
       homeDirectory = "/Users/${username}";
-      stateVersion = "21.05";
+      stateVersion = "21.11";
       extraSpecialArgs = {
-        inherit system;
+        system="darwin";
         nixpkgs_flake = nixpkgs;
       };
       configuration = { ... }: {
-        imports = [ ./users/${username}/home ];
+        imports = [ ./users/common/home ./users/${username}/home ];
       };
     };
 
-    packages = {
-      "x86_64-linux" = home-manager.packages."x86_64-linux";
-      "x86_64-darwin" = home-manager.packages."x86_64-darwin";
+    homeConfigurations."yannik@mbp-2021" = home-manager.lib.homeManagerConfiguration rec {
+      system = "aarch64-darwin";
+      username = "yannik";
+      homeDirectory = "/Users/${username}";
+      stateVersion = "21.11";
+      extraSpecialArgs = {
+        system="darwin";
+        nixpkgs_flake = nixpkgs;
+      };
+      configuration = { ... }: {
+        imports = [ ./users/common/home ./users/${username}/home ];
+      };
     };
 
-    apps = {
-      x86_64-darwin = home-manager.apps."x86_64-darwin";
-      x86_64-linux = home-manager.apps."x86_64-linux";
-    };
+    packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin"] (arch: home-manager.packages."${arch}");
+
+    apps = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin"] ( arch: home-manager.apps."${arch}" );
 
   };
 }
