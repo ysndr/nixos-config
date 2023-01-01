@@ -25,6 +25,7 @@ in rec {
     pkgs.nix
     nixpkgs-fmt
     rnix-lsp
+    nil
     cachix
 
     # run commands without installing
@@ -44,6 +45,7 @@ in rec {
     # utilities
 
     ## use module?
+    fx
     jq
     bat
 
@@ -55,6 +57,7 @@ in rec {
     rsync
     timewarrior
     xsel
+    alejandra
 
     openssh
 
