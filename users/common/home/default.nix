@@ -81,7 +81,7 @@ in rec {
       delta.enable = true;
     };
 
-    gpg.enable = true;
+    # gpg.enable = true;
 
     browserpass.enable = true;
 
