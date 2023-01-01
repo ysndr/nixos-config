@@ -19,7 +19,7 @@ in
     enableBashIntegration = true;
     enableZshIntegration = true;
     settings = {
-      add_newline = false;
+      add_newline = true;
       nix_shell.use_name = true;
     };
   };
