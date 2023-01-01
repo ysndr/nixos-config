@@ -56,6 +56,12 @@ in {
   fonts.fontconfig.enable = true;
 
   programs.gpg.enable = true;
+  services.gpg-agent.enable = true;
+  services.gpg-agent.enableSshSupport = true;
+  services.gpg-agent.sshKeys = [
+    "F3F3967D532B33B739A589E673F2E5682F05B72F" # gpg rsa
+    "442D005A51D0FA60BC6F6E1C37239F49A8A466D5" # gpg ed25519
+  ];
 
   programs.browserpass.enable = true;
 
