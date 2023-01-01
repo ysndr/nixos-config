@@ -1,28 +1,27 @@
-args@{ pkgs, system, nixpkgs_flake, ... }:
-let
-
+args @ {
+  pkgs,
+  system,
+  nixpkgs_flake,
+  ...
+}: let
   # comma = pkgs.callPackage (pkgs.fetchgit { url = "https://github.com/nix-community/comma"; sha256 = "sha256-WBIQmwlkb/GMoOq+Dnyrk8YmgiM/wJnc5HYZP8Uw72E="; }) { };
-
-  python = pkgs.python3.withPackages (p: with p; [
-    numpy
-    pandas
-    tqdm
-  ]);
-
-
-in
-rec {
-  imports = [ ../platform/${system}/home.nix ./shell-config.nix ./ssh.nix ];
+  python = pkgs.python3.withPackages (p:
+    with p; [
+      numpy
+      pandas
+      tqdm
+    ]);
+in rec {
+  imports = [../platform/${system}/home.nix ./shell-config.nix ./ssh.nix];
 
   nixpkgs.config = import ./config.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
   xdg.configFile."nix/nix.conf".text = import ./nix.conf.nix (import ./secrets.nix);
-  nix.registry = import ./registry.nix { inherit nixpkgs_flake; };
+  nix.registry = import ./registry.nix {inherit nixpkgs_flake;};
 
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-
     pkgs.nix
     nixpkgs-fmt
     rnix-lsp
@@ -54,10 +53,8 @@ rec {
     tealdeer
     thefuck
     rsync
-
     timewarrior
     xsel
-
 
     openssh
 
@@ -65,12 +62,10 @@ rec {
 
     # fonts
     source-code-pro
-    joypixels
     alegreya
     alegreya-sans
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
   ];
-
 
   programs = {
     exa = {
@@ -93,6 +88,4 @@ rec {
   };
 
   home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
-
-
 }

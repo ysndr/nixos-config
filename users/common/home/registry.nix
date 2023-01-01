@@ -1,4 +1,3 @@
-{nixpkgs_flake}:
-{
+{nixpkgs_flake}: {
   nixpkgs.flake = nixpkgs_flake;
 }

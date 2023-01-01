@@ -41,10 +41,17 @@
     # $ nix build ~/.config/darwin\#darwinConfigurations.Johns-MacBook.system
     # $ ./result/sw/bin/darwin-rebuild switch --flake ~/.config/darwin
     ###
-    darwinConfigurations."Yanniks-MacBook-Pro" = darwin.lib.darwinSystem {
+    darwinConfigurations."Yanniks-MacBook-Pro-Intel" = darwin.lib.darwinSystem {
       system = "x86_64-darwin";
-      modules = [ 
+      modules = [
         ./machines/mbp-2018
+      ];
+    };
+
+    darwinConfigurations."Yanniks-MacBook-Pro-M1" = darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        ./machines/mbp-2021
       ];
     };
 
@@ -62,37 +69,57 @@
       };
     };
 
-    homeConfigurations."ysander@mbp-2021" = home-manager.lib.homeManagerConfiguration rec {
-      system = "aarch64-darwin";
-      username = "ysander";
-      homeDirectory = "/Users/${username}";
-      stateVersion = "21.11";
-      extraSpecialArgs = {
-        system="darwin";
-        nixpkgs_flake = nixpkgs;
-      };
-      configuration = { ... }: {
-        imports = [ ./users/common/home ./users/${username}/home ];
-      };
-    };
+    homeConfigurations."ysander@mbp-2021" =
+      let
+        username = "ysander";
+        system = "aarch64-darwin";
+      in
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = builtins.getAttr system nixpkgs.legacyPackages;
+        modules = [
+          ./users/common/home
+          ./users/${username}/home
+          {
+            home = {
+              username = username;
+              homeDirectory = "/Users/${username}";
+              stateVersion = "21.11";
+            };
+          }
+        ];
 
-    homeConfigurations."yannik@mbp-2021" = home-manager.lib.homeManagerConfiguration rec {
-      system = "aarch64-darwin";
-      username = "yannik";
-      homeDirectory = "/Users/${username}";
-      stateVersion = "21.11";
-      extraSpecialArgs = {
-        system="darwin";
-        nixpkgs_flake = nixpkgs;
+        extraSpecialArgs = {
+          system = "darwin";
+          nixpkgs_flake = nixpkgs;
+        };
       };
-      configuration = { ... }: {
-        imports = [ ./users/common/home ./users/${username}/home ];
+
+    homeConfigurations."yannik@mbp-2021" =
+      let
+        username = "yannik";
+        system = "aarch64-darwin";
+      in
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = builtins.getAttr system nixpkgs.legacyPackages;
+        modules = [
+          ./users/common/home
+          ./users/${username}/home
+          {
+            home = {
+              username = username;
+              homeDirectory = "/Users/${username}";
+              stateVersion = "21.11";
+            };
+          }
+        ];
+
+        extraSpecialArgs = {
+          system = "darwin";
+          nixpkgs_flake = nixpkgs;
+        };
       };
-    };
 
-    packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin"] (arch: home-manager.packages."${arch}");
-
-    apps = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin"] ( arch: home-manager.apps."${arch}" );
+    packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ] (arch: home-manager.packages."${arch}");
 
   };
 }

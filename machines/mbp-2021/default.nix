@@ -7,6 +7,7 @@
     pkgs.coreutils
     pkgs.openssh
     pkgs.pinentry_mac
+    pkgs.gnupg
   ];
 
   # Use a custom configuration.nix location.
@@ -17,8 +18,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-  nix.trustedUsers = [ "root" "ysander" "yannik" ];
-
+  
   programs.zsh.enable = true;
 
   programs.gnupg.agent = {
@@ -26,7 +26,7 @@
     enableSSHSupport = true;
   };
 
-  fonts.enableFontDir = true;
+  fonts.fontDir.enable = true;
   fonts.fonts = [ ];
 
 
@@ -36,6 +36,7 @@
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
-  nix.maxJobs = 8;
-  nix.buildCores = 8;
+  nix.settings.max-jobs = 8;
+  nix.settings.cores = 8;
+  nix.settings.trusted-users = [ "root" "ysander" "yannik" ];
 }
