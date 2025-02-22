@@ -23,8 +23,7 @@ in rec {
 
   home.packages = with pkgs; [
     pkgs.nix
-    nixpkgs-fmt
-    rnix-lsp
+    nixfmt-rfc-style
     nil
     cachix
 
@@ -32,6 +31,7 @@ in rec {
 
     # github cli
     gh
+    git-absorb
 
     # some password management
     gopass
@@ -50,7 +50,7 @@ in rec {
     bat
 
     fd
-    exa
+    eza
     ripgrep
     tealdeer
     thefuck
@@ -58,6 +58,7 @@ in rec {
     timewarrior
     xsel
     alejandra
+    nixfmt-rfc-style
 
     openssh
 
@@ -65,20 +66,23 @@ in rec {
 
     # fonts
     source-code-pro
+    # joypixels unfree
     alegreya
     alegreya-sans
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    nerd-fonts."fira-code"
+    nerd-fonts."droid-sans-mono" 
   ];
 
   programs = {
-    exa = {
-      enable = true;
-      enableAliases = true;
-    };
-
     git = {
       enable = true;
-      delta.enable = true;
+      # delta.enable = true;
+      difftastic.enable = true;
+      extraConfig = {
+        push.autoSetupRemote = true;
+        safe.directory = "*";  
+      };
+      
     };
 
     # gpg.enable = true;
@@ -86,6 +90,49 @@ in rec {
     browserpass.enable = true;
 
     taskwarrior.enable = true;
+
+    helix = {
+      enable = true;
+      defaultEditor = true;
+      settings = {
+        theme = "base16_transparent";
+        editor = {
+          scroll-lines = 1;
+          cursor-shape = {
+            normal = "underline";
+            insert = "bar";
+            select = "block";
+          };
+          lsp = {
+            display-inlay-hints = true;
+          };
+          auto-save = {
+            focus-lost = true;
+          };
+          # indent-guides = {
+          #   render = true;
+          #   character = "";
+          # };
+        };
+      };
+      languages = {
+        language = [
+          {
+            name = "rust";
+
+            auto-pairs = {
+              "(" = ")";
+              "{" = "}";
+              "[" = "]";
+
+              "\"" = "\"";
+              "`" = "`";
+              "<" = ">";
+            };
+          }
+        ];
+      };
+    };
 
     home-manager.enable = true;
   };

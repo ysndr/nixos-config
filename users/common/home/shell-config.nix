@@ -1,41 +1,48 @@
-{ pkgs, ... }:
-let
-  dircolors_src = (pkgs.fetchgit {
+{pkgs, ...}: let
+  dircolors_src = pkgs.fetchgit {
     url = "https://github.com/trapd00r/LS_COLORS";
     sha256 = "sha256-MVESURX3tNHxnFiLCJIlKOCLbXeoz4OBGzuoRZiurb8=";
-  });
-in
-{
+  };
+in {
   programs = {
-
     bash.enable = true;
-    fzf.enable = true;
-
+    atuin = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+      flags = ["--disable-up-arrow"];
+      settings = {
+        style = "compact";
+        show_preview = true;
+      };      
+    };    
+    
+    fzf = {
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enable = true;
+    };
     direnv = {
       enable = true;
       enableZshIntegration = true;
       nix-direnv = {
         enable = true;
       };
-      config = { };
-      # stdlib = pkgs.lib.readFile ./direnv/nix;
-    };
-
-    skim = {
-      enable = true;
-      enableBashIntegration = true;
-      enableZshIntegration = true;
+      config = {};
     };
 
     starship = {
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
       settings = {
         add_newline = false;
         status = {
           disabled = false;
-          map_symbol = true;
+          symbol = "⚡️";
+          map_symbol = true; # breaks shells :(
           pipestatus = true;
         };
         cmd_duration.show_notifications = true;
@@ -60,14 +67,36 @@ in
       enable = true;
       enableBashIntegration = true;
       enableZshIntegration = true;
+      enableNushellIntegration = true;
+    };
+
+    carapace = {
+      enable = true;
+      enableNushellIntegration = false;
+      enableZshIntegration = false;
+    };
+
+    dircolors = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+    };
+
+    eza = {
+      enable = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
+      enableFishIntegration = true;
+      enableNushellIntegration = true;
     };
 
     zsh = {
       dotDir = ".config/zsh";
       enable = true;
-      enableCompletion = false;
-      enableSyntaxHighlighting = true;
-      enableAutosuggestions = true;
+      enableCompletion = true;
+      syntaxHighlighting.enable = true;
+      autosuggestion.enable = false;
 
       dirHashes = {
         docs = "$HOME/Documents";
@@ -121,7 +150,6 @@ in
           "rust"
           "npm"
           "nix-shell"
-          "fd"
         ];
       };
 
@@ -134,8 +162,19 @@ in
         bindkey "[C" forward-word
 
         export SHELL=${pkgs.zsh}/bin/zsh
+      '';
+    };
 
-        eval "$(${pkgs.coreutils}/bin/dircolors -b ${dircolors_src}/LS_COLORS)"
+    fish = {
+      enable = true;
+    };
+
+    nushell = {
+      enable = true;
+      extraConfig = ''
+        $env.SHLVL = ($env.SHLVL | default 0 | into int) + 1
+
+        ${builtins.readFile ./nushell/complete.nu}
       '';
     };
   };
