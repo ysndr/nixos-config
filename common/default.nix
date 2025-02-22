@@ -1,6 +1,8 @@
-{ nixpkgs }:
-{ config, pkgs, ... }:
-{
+{nixpkgs}: {
+  config,
+  pkgs,
+  ...
+}: {
   nix = {
     package = pkgs.nixUnstable;
     extraOptions = ''
@@ -8,7 +10,9 @@
       keep-outputs = true
       keep-derivations = true
     '';
-    registry."nixpkgs".flake = nixpkgs;
+    registry = {
+      "nixpkgs".flake = nixpkgs;
+    };
   };
   nixpkgs.config.allowUnfree = true;
 }

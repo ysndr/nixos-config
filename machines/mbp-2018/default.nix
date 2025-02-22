@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
@@ -17,7 +19,7 @@
   services.nix-daemon.enable = true;
   nix.package = pkgs.nix;
 
-  nix.trustedUsers = [ "root" "ysander" ];
+  nix.trustedUsers = ["root" "ysander"];
 
   programs.zsh.enable = true;
 
@@ -26,9 +28,7 @@
     enableSSHSupport = true;
   };
 
-  fonts.enableFontDir = true;
-  fonts.fonts = [ ];
-
+  fonts.packages = [];
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
