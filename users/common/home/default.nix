@@ -89,7 +89,7 @@ in rec {
 
     browserpass.enable = true;
 
-    taskwarrior.enable = true;
+    #taskwarrior.enable = true;
 
     helix = {
       enable = true;
@@ -137,5 +137,5 @@ in rec {
     home-manager.enable = true;
   };
 
-  home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
+  # home.file.".local/share/task/hooks/on-modify.timewarrior".source = "${pkgs.timewarrior.src}/ext/on-modify.timewarrior";
 }
