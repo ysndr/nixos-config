@@ -22,6 +22,19 @@
 
   programs.zsh.enable = true;
 
+  users.knownUsers = [ "homebrewer" ];
+  users.groups.homebrewer = {
+    members = [
+      "homebrewer"
+      "yannik"
+    ];
+  };
+  users.users.homebrewer = {
+    uid = 599;
+    isHidden = true;
+    home = "/opt/homebrew";
+  };
+  environment.systemPath = [ "/opt/homebrew/bin" ];
 
   # programs.gnupg.agent = {
   #   enable = true;
