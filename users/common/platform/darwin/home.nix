@@ -2,15 +2,21 @@
   config,
   pkgs,
   ...
-}: let
-  fontDirectories = ["/Library/Fonts" "/System/Library/Fonts" "~/Library/Fonts"];
+}:
+let
+  fontDirectories = [
+    "/Library/Fonts"
+    "/System/Library/Fonts"
+    "~/Library/Fonts"
+  ];
   fontsConfig = pkgs.makeFontsConf {
     inherit fontDirectories;
   };
   fontsCacheConfig = pkgs.makeFontsCache {
     inherit fontDirectories;
   };
-in {
+in
+{
   home.packages = with pkgs; [
     pinentry_mac
     fontconfig
@@ -19,8 +25,8 @@ in {
     coreutils-full
     gnugrep
   ];
-  programs.zsh = {
 
+  programs.zsh = {
     dirHashes = {
       git = "Volumes/projects/git";
     };
@@ -36,6 +42,8 @@ in {
 
     '';
 
-    shellAliases.brew = "sudo -u homebrewer -H -- /opt/homebrew/bin/brew";
+    shellAliases.brew = "sudo -H -s -u homebrewer -- /opt/homebrew/bin/brew";
   };
+
+  programs.nushell.shellAliases.brew = "sudo -H -u homebrewer -- /opt/homebrew/bin/brew";
 }
