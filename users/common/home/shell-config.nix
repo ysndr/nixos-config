@@ -71,7 +71,7 @@ in {
     };
 
     carapace = {
-      enable = true;
+      enable = false;
       enableNushellIntegration = false;
       enableZshIntegration = false;
     };
