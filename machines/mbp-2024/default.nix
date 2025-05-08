@@ -36,6 +36,9 @@
   };
   environment.systemPath = [ "/opt/homebrew/bin" ];
 
+  
+  security.pam.services.sudo_local.touchIdAuth = true;
+
   # programs.gnupg.agent = {
   #   enable = true;
   #   enableSSHSupport = true;
