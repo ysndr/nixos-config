@@ -1,23 +1,30 @@
-args @ {
+args@{
   pkgs,
   system,
   nixpkgs_flake,
   ...
-}: let
+}:
+let
   # comma = pkgs.callPackage (pkgs.fetchgit { url = "https://github.com/nix-community/comma"; sha256 = "sha256-WBIQmwlkb/GMoOq+Dnyrk8YmgiM/wJnc5HYZP8Uw72E="; }) { };
-  python = pkgs.python3.withPackages (p:
-    with p; [
+  python = pkgs.python3.withPackages (
+    p: with p; [
       numpy
       pandas
       tqdm
-    ]);
-in rec {
-  imports = [../platform/${system}/home.nix ./shell-config.nix ./ssh.nix];
+    ]
+  );
+in
+rec {
+  imports = [
+    ../platform/${system}/home.nix
+    ./shell-config.nix
+    ./ssh.nix
+  ];
 
   nixpkgs.config = import ./config.nix;
   xdg.configFile."nixpkgs/config.nix".source = ./config.nix;
   xdg.configFile."nix/nix.conf".text = import ./nix.conf.nix (import ./secrets.nix);
-  nix.registry = import ./registry.nix {inherit nixpkgs_flake;};
+  nix.registry = import ./registry.nix { inherit nixpkgs_flake; };
 
   fonts.fontconfig.enable = true;
 
@@ -70,7 +77,7 @@ in rec {
     alegreya
     alegreya-sans
     nerd-fonts."fira-code"
-    nerd-fonts."droid-sans-mono" 
+    nerd-fonts."droid-sans-mono"
   ];
 
   programs = {
@@ -82,7 +89,7 @@ in rec {
         push.autoSetupRemote = true;
         safe.directory = "*";  
       };
-      
+
     };
 
     # gpg.enable = true;

@@ -27,6 +27,7 @@
     members = [
       "homebrewer"
       "yannik"
+      "ysander"
     ];
   };
   users.users.homebrewer = {
