@@ -87,7 +87,11 @@ rec {
       difftastic.enable = true;
       extraConfig = {
         push.autoSetupRemote = true;
-        safe.directory = "*";  
+        safe.directory = "*";
+        filter.lfs.smudge = "git-lfs smudge -- %f";
+        filter.lfs.clean = "git-lfs clean -- %f";
+        filter.lfs.process = "git-lfs filter-process";
+        filter.lfs.required = true;
       };
 
     };
