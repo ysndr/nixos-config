@@ -164,6 +164,33 @@
             nixpkgs_flake = nixpkgs;
           };
         };
+
+      homeConfigurations."ysander@mbp-2024" =
+        let
+          username = "ysander";
+          system = "aarch64-darwin";
+        in
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = builtins.getAttr system nixpkgs.legacyPackages;
+          modules = [
+            ./users/common/home
+            ./users/${username}/home
+            {
+              home = {
+                username = username;
+                homeDirectory = "/Users/${username}";
+                stateVersion = "24.11";
+              };
+            }
+          ];
+
+          extraSpecialArgs = {
+            system = "darwin";
+            nixpkgs_flake = nixpkgs;
+          };
+        };
+ 
+
       packages = nixpkgs.lib.genAttrs [ "x86_64-linux" "x86_64-darwin" "aarch64-darwin" ] (
         arch:
         let
